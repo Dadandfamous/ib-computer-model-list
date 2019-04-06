@@ -26,12 +26,20 @@ const data = {
 }
 
 class App extends Component {
+
+  state = {}
+
+  // this bit changes local react state, when using dropdown:
+  updateSelection = (event)  => {
+    this.setState({value: event.target.value});
+  }
+
   render() {
     return (
     
     <div className="App">
-    <select>
-      <option value = "">-- pick a model --</option>
+    <select  onChange={this.updateSelection}>
+      <option value = {this.state.value}>-- pick a model --</option>
 
     {/*////// NO YEAR BRACKETS */}
 
@@ -47,37 +55,3 @@ class App extends Component {
 }
   export default App;
 
-//   {Object.keys(subjects).map((keyName, i) => (
-//     <li className="travelcompany-input" key={i}>
-//         <span className="input-label">key: {i} Name: {subjects[keyName]}</span>
-//     </li>
-// ))}
-
-
-// _renderObject(){
-//   return Object.keys(ObjectTest).map(obj, i) => {
-//       return (
-//           <div>
-//               id is: {ObjectTest[obj].id} ;
-//               name is: {ObjectTest[obj].name}
-//           </div>
-//       )
-//   })
-// }
-
-
-
-// <select>
-//       <option value = ">-- pick a model --<"></option>
-//       <option value = {data[obj].}>two</option>
-//       <option value = "Bally Astrocade">Bally Astrocade (1977)"></option>
-//       <option value = "Sord M200 Smart Home Computer">Sord M200 Smart Home Computer (1971)"></option>
-//       <option value = "Commodore 64">Commodore 64 (1982)"></option>
-//        </select>
-
-
-// class App extends Component {
-//   render() {
-    
-//   }
-// }
