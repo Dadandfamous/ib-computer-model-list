@@ -9,13 +9,13 @@ class ModelDetailsContainer extends React.Component{
 
     // This is the best I could do
     // Lost the overview in this part of the exercise
-    return <ModelDetails />
+    return <ModelDetails comp={this.props.comp} />
   } 
 }
 
 const mapStateToProps = (state) => {
   return {
-    comp: state
+    comp: state.comp
   }
 }
 
