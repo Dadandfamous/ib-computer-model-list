@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-// import logo from './logo.svg';
 import './App.css';
+import { addCompData } from './actions/AddCompData';
+import { connect } from 'react-redux';
 
 const data = {
   "Ivel Z3": {
@@ -28,30 +29,37 @@ const data = {
 class App extends Component {
 
   state = {}
-
   // this bit changes local react state, when using dropdown:
   updateSelection = (event)  => {
     this.setState({value: event.target.value});
   }
 
+  addSelectedItem = ()  => {
+    const addToList = this.state.addToList
+    this.props.addCompData(this.state.data[addToList]);
+  }
+
   render() {
     return (
-    
     <div className="App">
     <select  onChange={this.updateSelection}>
       <option value = {this.state.value}>-- pick a model --</option>
 
     {/*////// NO YEAR BRACKETS */}
-
-            {Object.keys(data).map(comp => <option value={comp} key={comp}>{comp} {data[comp].year}</option>)}
-
+            {Object.keys(data).map(comp => <option value={comp} key={comp}>{comp} ({data[comp].year})</option>)}
     {/*////// NO YEAR BRACKETS */}
 
        </select>
-    
+       <button onClick={this.addSelectedItem}>Add selection to list</button>
     </div>
   )
   }
 }
-  export default App;
+
+const mapStateToProps = (state) => {
+  return {
+    comp: state
+  }
+}
+  export default connect (mapStateToProps, { addCompData } )  (App);
 
